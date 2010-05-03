@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Organization(models.Model):
     name = models.CharField(max_length=255, unique=True, db_index=True)
     email = models.EmailField()
@@ -18,5 +19,6 @@ class Letter(models.Model):
     subject = models.CharField(max_length=255)
     content = models.TextField(max_length=4000)
 
+    
     def __unicode__(self):
         return "Letter from %s: %s" % (self.author.username, self.subject)

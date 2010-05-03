@@ -1,0 +1,25 @@
+{% extends "admin/base_site.html" %}
+
+
+{% block title %}Letters list{% endblock %}
+
+
+{% block content %}
+
+<table border="1">
+
+    {% for letter in list %}
+        <tr>
+            <th>From</th>
+            <td>{{  letter.author }}</td>
+            <th>Subject</th>
+            <td>{{  letter.subject }}</td>
+        </tr>
+        <tr>
+            <td colspan=4>{{ letter.content }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock content %}
