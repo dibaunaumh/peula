@@ -15,5 +15,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
 
+    (r'organization/(?P<org>\w+)/', 'letters.views.org_page'),
+    (r'organization/(?P<org>\w+)', 'letters.views.org_page'),
+
     (r'^', 'letters.views.home'),
 )

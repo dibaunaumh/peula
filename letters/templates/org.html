@@ -1,0 +1,25 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Organization' %}: {{ organization.name }} {% endblock %}
+
+
+{% block content %}
+
+<h1>{{ organization.name }}</h1>
+
+<p>{% trans 'Email' %}: {{ organization.email }}</p>
+{% if organization.fax_number %}
+<p>{% trans 'Fax' %}: {{ organization.fax_number }}</p>
+{% endif %}
+
+<p>
+{% trans 'Recent mentions' %}:
+<ul>
+
+    {% for mention in mentions %}
+        <li><img src="{{ mention.2 }}">{{ mention.0 }}: {{ mention.1 }}
+    {%  endfor %}
+</ul>
+
+{% endblock content %}

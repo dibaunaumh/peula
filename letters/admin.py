@@ -12,7 +12,7 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 class LetterAdmin(admin.ModelAdmin):
     search_fields = ["subject", "content"]
-    list_display = ["author", "organization", "subject", "rating"]
+    list_display = ["author", "organization", "subject",]
     list_filter = ["organization"]
 
 

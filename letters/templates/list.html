@@ -1,7 +1,8 @@
 {% extends "admin/base_site.html" %}
+{% load i18n %}
 
 
-{% block title %}Letters list{% endblock %}
+{% block title %}{% trans 'Letters list' %}{% endblock %}
 
 
 {% block content %}
@@ -10,9 +11,9 @@
 
     {% for letter in list %}
         <tr>
-            <th>From</th>
+            <th>{% trans 'From' %}</th>
             <td>{{  letter.author }}</td>
-            <th>Subject</th>
+            <th>{% trans 'Subject' %}</th>
             <td>{{  letter.subject }}</td>
         </tr>
         <tr>

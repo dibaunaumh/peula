@@ -1,11 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils.translation import gettext_lazy as _
 
 class Organization(models.Model):
-    name = models.CharField(max_length=255, unique=True, db_index=True)
-    email = models.EmailField()
-    fax_number = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(_("name"), max_length=255, unique=True, db_index=True)
+    email = models.EmailField(_("email"))
+    fax_number = models.CharField(_("fax"), max_length=100, null=True, blank=True)
+    url = models.URLField(_("url"), null=True, blank=True, verify_exists=False)
+
+    class Metaclass:
+        verbose_name = _("organization")
+        verbose_name_plural = _("organizations")
 
 
     def __unicode__(self):
@@ -14,11 +19,15 @@ class Organization(models.Model):
 
 
 class Letter(models.Model):
-    author = models.ForeignKey(User, db_index=True)
-    organization = models.ForeignKey(Organization)
-    subject = models.CharField(max_length=255)
-    content = models.TextField(max_length=4000)
+    author = models.ForeignKey(User, verbose_name=_("author"), db_index=True)
+    organization = models.ForeignKey(Organization, verbose_name=_("organization"))
+    subject = models.CharField(_("subject"), max_length=255)
+    content = models.TextField(_("content"), max_length=4000)
 
     
     def __unicode__(self):
-        return "Letter from %s: %s" % (self.author.username, self.subject)
+        return "%s %s: %s" % (_("Letter from"), self.author.username, self.subject)
+
+    class Metaclass:
+        verbose_name = _("letter")
+        verbose_name_plural = _("letters")

@@ -6,18 +6,19 @@ Replace these with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from django.test.client import Client
+
 
 class SimpleTest(TestCase):
-    def test_basic_addition(self):
+    def test_org_page(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Tests the model of the organization page.
         """
-        self.failUnlessEqual(1 + 1, 2)
+        url = "/organization/Sony"
+        c = Client()
+        response = c.get(url)
+        org = response.context["organization"]
+        self.assertEquals("Sony", org.name)
+        self.assertEquals("info@sony.com", org.email)
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
-True
-"""}
 
