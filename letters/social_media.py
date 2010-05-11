@@ -1,5 +1,5 @@
 import urllib2
-import simplejson
+from django.utils import simplejson
 
 TWITTER_SEARCH_URL = 'http://search.twitter.com/search.json?q={query}'
 

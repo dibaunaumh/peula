@@ -7,6 +7,34 @@
 
 {% block content %}
 
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+
+<script>
+var SEARCH_SIMILAR_URL = "/api/search_similar_letters/";
+
+function search_similar() {
+    var keywords = document.getElementById("keywords").value;
+    $.getJSON(SEARCH_SIMILAR_URL + encodeURI(keywords),
+        function(data) {
+            var list = "Similar letters:<ul>";
+            for (i in data) {
+                list += "<li>" + data[i]["fields"]["subject"];
+            }
+            list += "</ul>";
+            document.getElementById("letter_results").innerHTML = list;
+        });
+
+}
+</script>
+
+
+<p>Search letters:<br/>
+<input type="text" size="80" id="keywords" onKeyUp="search_similar()">
+</p>
+
+<div id="letter_results" style="display: block; visibility: visible; height: 200px">
+</div>
+
 <table border="1">
 
     {% for letter in list %}

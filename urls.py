@@ -18,5 +18,7 @@ urlpatterns = patterns('',
     (r'organization/(?P<org>\w+)/', 'letters.views.org_page'),
     (r'organization/(?P<org>\w+)', 'letters.views.org_page'),
 
+    (r'^api/search_similar_letters/(?P<prefix>\w+)', 'letters.views.search_similar_letters'),
+    
     (r'^', 'letters.views.home'),
 )

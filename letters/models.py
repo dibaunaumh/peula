@@ -26,7 +26,7 @@ class Letter(models.Model):
 
     
     def __unicode__(self):
-        return "%s %s: %s" % (_("Letter from"), self.author.username, self.subject)
+        return "%s: %s" % (self.author.username, self.subject)
 
     class Metaclass:
         verbose_name = _("letter")
