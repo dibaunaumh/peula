@@ -1,6 +1,7 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
 
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block title %}{% trans 'Letters list' %}{% endblock %}
 
@@ -32,23 +33,31 @@ function search_similar() {
 <input type="text" size="80" id="keywords" onKeyUp="search_similar()">
 </p>
 
-<div id="letter_results" style="display: block; visibility: visible; height: 200px">
+<div id="letter_results" style="display: block; visibility: visible; height: 100px">
 </div>
 
-<table border="1">
+<input type=button value="{% trans 'Add letter' %}" onclick="document.location.href='/letter/add'"/>
 
     {% for letter in list %}
+    <table border="1" width="50%">
+        <tr>
+            <th>To:</th>
+            <td><a href="{{ letter.organization.get_absolute_url }}">{{ letter.organization }}</a></td>
+        </tr>
         <tr>
             <th>{% trans 'From' %}</th>
             <td>{{  letter.author }}</td>
+            </tr><tr>
             <th>{% trans 'Subject' %}</th>
             <td>{{  letter.subject }}</td>
         </tr>
         <tr>
-            <td colspan=4>{{ letter.content }}</td>
+            <td colspan=2>{{ letter.content }}</td>
         </tr>
+        </table>
+        <br/><br/><br/>
     {% endfor %}
 
-</table>
+
 
 {% endblock content %}

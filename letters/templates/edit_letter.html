@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+
+{% block title %}{% trans 'Edit letter' %}{% endblock %}
+
+
+{% block content %}
+
+<form action="{% url letters.views.add_letter %}" method="POST">
+
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }}: {{ field }}
+    </div>
+    {% endfor %}
+
+    <input type="submit" value="{% trans 'Send' %}"/>
+</form>
+
+{% endblock content %}
